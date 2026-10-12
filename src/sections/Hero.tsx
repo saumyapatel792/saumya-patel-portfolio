@@ -17,10 +17,10 @@ export const Hero: React.FC = () => {
   const photos = {
     formal: {
       src: '/images/saumya_patel_formal.jpg',
-      alt: 'Saumya Alpesh Patel - Formal Business Attire',
-      caption: 'Formal Professional Attire',
+      alt: 'Saumya Alpesh Patel - Professional Portrait',
+      caption: 'Professional Portrait',
       tag: 'Executive Portfolio',
-      objectPosition: 'center 15%',
+      objectPosition: 'center 42%',
     },
     campus: {
       src: '/images/saumya_patel_campus.jpg',
