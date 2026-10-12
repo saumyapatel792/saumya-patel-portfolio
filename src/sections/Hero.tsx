@@ -20,7 +20,7 @@ export const Hero: React.FC = () => {
       alt: 'Saumya Alpesh Patel - Professional Portrait',
       caption: 'Professional Portrait',
       tag: 'Executive Portfolio',
-      objectPosition: 'center 42%',
+      objectPosition: 'center center',
     },
     campus: {
       src: '/images/saumya_patel_campus.jpg',
