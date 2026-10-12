@@ -1,5 +1,6 @@
 # Saumya Alpesh Patel — Professional AI & Data Science Portfolio Website
 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-saumya--patel--portfolio.vercel.app-0070f3.svg?style=flat-square&logo=vercel)](https://saumya-patel-portfolio.vercel.app/)
 [![React](https://img.shields.io/badge/React-18.3-61dafb.svg?style=flat-square&logo=react)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178c6.svg?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
 [![Vite](https://img.shields.io/badge/Vite-6.1-646cff.svg?style=flat-square&logo=vite)](https://vitejs.dev/)
@@ -8,9 +9,11 @@
 > **"Building Intelligent Solutions with Data & AI."**  
 > Complete personal portfolio of **Saumya Alpesh Patel**, Data Science postgraduate student at Alliance University, Bengaluru. Showcasing applied machine learning architectures, NLP triage systems, clinical decision-support algorithms, enterprise Power BI analytics, and end-to-end MLOps pipelines.
 
+**Live Website:** [https://saumya-patel-portfolio.vercel.app/](https://saumya-patel-portfolio.vercel.app/)
+
 ---
 
-## 🌟 Key Sections & Features
+## Key Sections & Features
 
 1. **Hero & Dynamic AI Network Canvas**: Interactive 2D neural network canvas built on HTML5 Canvas API, featuring real-time node interconnectivity, availability status, and resume download triggers.
 2. **About Me**: Verified background narrative, academic standing (M.Sc. GPA 9.6, B.Sc. GPA 8.71), co-authored IFERP conference research, and validated C1 language proficiencies.
@@ -32,7 +35,7 @@
 
 ---
 
-## 🛠️ Tech Stack & Architecture
+## Tech Stack & Architecture
 
 - **Frontend Framework**: React 18 with TypeScript
 - **Build Tool**: Vite 6 (sub-second HMR and optimized production bundles)
@@ -42,7 +45,7 @@
 
 ---
 
-## 🚀 Running Locally
+## Running Locally
 
 ### Prerequisites
 - Node.js (v18.0.0 or later, v24+ recommended)
@@ -75,7 +78,7 @@ npm run preview
 
 ---
 
-## 🔄 How to Update Content & Resume
+## How to Update Content & Resume
 
 ### 1. Update Project Information, Skills, or Certifications
 All portfolio data is centrally maintained in:
@@ -89,36 +92,11 @@ The download links and embedded viewers in the site reference this path.
 
 ---
 
-## 📦 Publishing to GitHub
+## Live Deployment on Vercel
 
-1. Initialize Git in the project root:
-   ```bash
-   git init
-   git add .
-   git commit -m "feat: initial commit of production portfolio website"
-   ```
-2. Create a new public repository on GitHub named:
-   `saumya-patel-portfolio`
-3. Link and push to your GitHub repository:
-   ```bash
-   git remote add origin https://github.com/saumyapatel792/saumya-patel-portfolio.git
-   git branch -M main
-   git push -u origin main
-   ```
+The portfolio is deployed live on Vercel with automated CI/CD continuous deployment:
 
----
+- **Production URL**: [https://saumya-patel-portfolio.vercel.app/](https://saumya-patel-portfolio.vercel.app/)
+- **Repository**: [https://github.com/saumyapatel792/saumya-patel-portfolio](https://github.com/saumyapatel792/saumya-patel-portfolio)
 
-## 🌐 Public Deployment on Vercel
-
-Vercel provides zero-configuration deployment for Vite projects with global CDN distribution.
-
-1. Go to [vercel.com](https://vercel.com) and sign in with your GitHub account.
-2. Click **"Add New..."** > **"Project"**.
-3. Select your repository `saumya-patel-portfolio`.
-4. Configure Build and Output Settings (auto-detected):
-   - **Framework Preset**: `Vite`
-   - **Build Command**: `npm run build`
-   - **Output Directory**: `dist`
-   - **Install Command**: `npm install`
-5. Click **"Deploy"**.
-6. Within ~30 seconds, Vercel will assign your public production URL (e.g. `https://saumya-patel-portfolio.vercel.app`).
+Whenever you commit and push updates to the `main` branch, Vercel automatically rebuilds and redeploys the site worldwide within seconds.
