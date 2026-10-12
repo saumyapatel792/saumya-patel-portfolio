@@ -1,17 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { personalInfo } from '../data/portfolioData';
-import { AiNetworkCanvas } from '../components/AiNetworkCanvas';
-import { ArrowRight, Download, Mail, Github, Linkedin, BookOpen, Sparkles, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, Download, Mail, Github, Linkedin, BookOpen, Sparkles, CheckCircle2, ShieldCheck, MapPin, GraduationCap } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 export const Hero: React.FC = () => {
+  const [activePhoto, setActivePhoto] = useState<'formal' | 'campus'>('formal');
+
   const triggerResumeDownload = () => {
     confetti({
-      particleCount: 40,
-      spread: 60,
+      particleCount: 45,
+      spread: 65,
       origin: { y: 0.75 },
     });
   };
+
+  const photos = {
+    formal: {
+      src: '/images/saumya_patel_formal.jpg',
+      alt: 'Saumya Alpesh Patel - Formal Business Attire',
+      caption: 'Formal Professional Attire',
+      tag: 'Executive Portfolio',
+      objectPosition: 'center 15%',
+    },
+    campus: {
+      src: '/images/saumya_patel_campus.jpg',
+      alt: 'Saumya Alpesh Patel - Academic Campus at Alliance University',
+      caption: 'Alliance University Campus',
+      tag: 'Academic & Campus',
+      objectPosition: 'center 20%',
+    },
+  };
+
+  const currentPhoto = photos[activePhoto];
 
   return (
     <section id="home" className="section" style={{ minHeight: '92vh', display: 'flex', alignItems: 'center', paddingTop: '7rem' }}>
@@ -117,26 +137,87 @@ export const Hero: React.FC = () => {
               </div>
 
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: '#cbd5e1', fontSize: '0.8rem', marginLeft: 'auto' }}>
-                <CheckCircle2 size={14} color="#10b981" />
-                <span>Verified Credentials &amp; Code</span>
+                <ShieldCheck size={15} color="#10b981" />
+                <span>Authentic Profile &amp; Verified Work</span>
               </div>
             </div>
           </div>
 
-          {/* Right Column: AI Network Visual & Live Interactive Card */}
-          <div style={canvasCardContainerStyle}>
-            <div style={canvasInnerStyle}>
-              <AiNetworkCanvas />
-              <div style={canvasOverlayBadgeStyle}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#38bdf8', boxShadow: '0 0 10px #38bdf8' }} />
+          {/* Right Column: Formal Professional Portrait Card */}
+          <div style={portraitCardWrapperStyle}>
+            <div className="glass-card" style={formalPortraitCardStyle}>
+              {/* Photo Viewport Container */}
+              <div style={photoViewportStyle}>
+                <img
+                  src={currentPhoto.src}
+                  alt={currentPhoto.alt}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    objectPosition: currentPhoto.objectPosition,
+                    transition: 'all 0.35s ease',
+                    display: 'block',
+                  }}
+                />
+
+                {/* Subtle Gradient Overlays for High-End Framing */}
+                <div style={photoTopShadowOverlayStyle} />
+                <div style={photoBottomShadowOverlayStyle} />
+
+                {/* Photo Switcher Controls */}
+                <div style={photoSwitcherTabBarStyle}>
+                  <button
+                    onClick={() => setActivePhoto('formal')}
+                    style={photoTabButtonStyle(activePhoto === 'formal')}
+                    aria-label="Show Formal Portrait"
+                  >
+                    Formal Portrait
+                  </button>
+                  <button
+                    onClick={() => setActivePhoto('campus')}
+                    style={photoTabButtonStyle(activePhoto === 'campus')}
+                    aria-label="Show Campus Photo"
+                  >
+                    Campus Profile
+                  </button>
+                </div>
+
+                {/* Verified Identity Badge Floating on Photo */}
+                <div style={floatingVerifiedBadgeStyle}>
+                  <CheckCircle2 size={14} color="#10b981" />
                   <span style={{ fontSize: '0.75rem', fontWeight: 600, color: '#f8fafc' }}>
-                    Applied AI &amp; Generative Intelligence
+                    Verified Candidate
                   </span>
                 </div>
-                <span style={{ fontSize: '0.7rem', color: '#94a3b8' }}>
-                  Alliance University • Bengaluru
-                </span>
+              </div>
+
+              {/* Information Footprint Under Photo */}
+              <div style={portraitCardDetailsStyle}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.5rem' }}>
+                  <div>
+                    <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#ffffff' }}>
+                      {personalInfo.name}
+                    </h3>
+                    <p style={{ fontSize: '0.825rem', color: '#38bdf8', fontWeight: 600, marginTop: '0.1rem' }}>
+                      Data Science &amp; AI Postgraduate
+                    </p>
+                  </div>
+                  <span style={{ fontSize: '0.72rem', color: '#cbd5e1', background: 'rgba(56, 189, 248, 0.1)', padding: '0.2rem 0.5rem', borderRadius: '4px', border: '1px solid rgba(56, 189, 248, 0.25)' }}>
+                    GPA 9.6
+                  </span>
+                </div>
+
+                <div style={quickInfoRowStyle}>
+                  <div style={quickInfoItemStyle}>
+                    <GraduationCap size={14} color="#818cf8" />
+                    <span>Alliance University</span>
+                  </div>
+                  <div style={quickInfoItemStyle}>
+                    <MapPin size={14} color="#38bdf8" />
+                    <span>Bengaluru, India</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -219,43 +300,112 @@ const statLabelStyle: React.CSSProperties = {
   lineHeight: 1.25,
 };
 
-const canvasCardContainerStyle: React.CSSProperties = {
-  position: 'relative',
-  width: '100%',
-  height: '100%',
-  minHeight: '420px',
+const portraitCardWrapperStyle: React.CSSProperties = {
   display: 'flex',
-  alignItems: 'center',
   justifyContent: 'center',
-};
-
-const canvasInnerStyle: React.CSSProperties = {
-  width: '100%',
-  height: '100%',
-  minHeight: '400px',
-  background: 'radial-gradient(ellipse at center, rgba(30, 41, 59, 0.5) 0%, rgba(10, 14, 26, 0.9) 70%)',
-  border: '1px solid rgba(255, 255, 255, 0.1)',
-  borderRadius: '24px',
-  overflow: 'hidden',
-  boxShadow: '0 20px 50px rgba(0, 0, 0, 0.6), 0 0 40px rgba(56, 189, 248, 0.12)',
-  position: 'relative',
-};
-
-const canvasOverlayBadgeStyle: React.CSSProperties = {
-  position: 'absolute',
-  bottom: '1.25rem',
-  left: '1.25rem',
-  right: '1.25rem',
-  background: 'rgba(10, 14, 26, 0.85)',
-  backdropFilter: 'blur(12px)',
-  border: '1px solid rgba(255, 255, 255, 0.1)',
-  borderRadius: '12px',
-  padding: '0.8rem 1.1rem',
-  display: 'flex',
-  justifyContent: 'space-between',
   alignItems: 'center',
-  flexWrap: 'wrap',
-  gap: '0.5rem',
+  width: '100%',
+};
+
+const formalPortraitCardStyle: React.CSSProperties = {
+  width: '100%',
+  maxWidth: '430px',
+  border: '1px solid rgba(255, 255, 255, 0.12)',
+  boxShadow: '0 20px 50px rgba(0, 0, 0, 0.7), 0 0 30px rgba(56, 189, 248, 0.1)',
+  padding: '0.75rem',
+  borderRadius: '20px',
+  backgroundColor: 'rgba(11, 16, 29, 0.85)',
+};
+
+const photoViewportStyle: React.CSSProperties = {
+  position: 'relative',
+  width: '100%',
+  height: '460px',
+  borderRadius: '14px',
+  overflow: 'hidden',
+  backgroundColor: '#070a13',
+};
+
+const photoTopShadowOverlayStyle: React.CSSProperties = {
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  right: 0,
+  height: '80px',
+  background: 'linear-gradient(to bottom, rgba(7, 10, 19, 0.6) 0%, transparent 100%)',
+  pointerEvents: 'none',
+};
+
+const photoBottomShadowOverlayStyle: React.CSSProperties = {
+  position: 'absolute',
+  bottom: 0,
+  left: 0,
+  right: 0,
+  height: '110px',
+  background: 'linear-gradient(to top, rgba(7, 10, 19, 0.85) 0%, transparent 100%)',
+  pointerEvents: 'none',
+};
+
+const photoSwitcherTabBarStyle: React.CSSProperties = {
+  position: 'absolute',
+  top: '0.9rem',
+  left: '0.9rem',
+  display: 'flex',
+  gap: '0.4rem',
+  background: 'rgba(7, 10, 19, 0.75)',
+  backdropFilter: 'blur(8px)',
+  padding: '0.25rem',
+  borderRadius: '8px',
+  border: '1px solid rgba(255, 255, 255, 0.12)',
+  zIndex: 10,
+};
+
+const photoTabButtonStyle = (active: boolean): React.CSSProperties => ({
+  padding: '0.3rem 0.65rem',
+  borderRadius: '6px',
+  fontSize: '0.725rem',
+  fontWeight: 600,
+  background: active ? '#0284c7' : 'transparent',
+  color: active ? '#ffffff' : '#cbd5e1',
+  border: 'none',
+  cursor: 'pointer',
+  transition: 'all 0.2s ease',
+});
+
+const floatingVerifiedBadgeStyle: React.CSSProperties = {
+  position: 'absolute',
+  top: '0.9rem',
+  right: '0.9rem',
+  background: 'rgba(7, 10, 19, 0.85)',
+  backdropFilter: 'blur(8px)',
+  padding: '0.35rem 0.65rem',
+  borderRadius: '999px',
+  border: '1px solid rgba(16, 185, 129, 0.3)',
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.35rem',
+  zIndex: 10,
+};
+
+const portraitCardDetailsStyle: React.CSSProperties = {
+  padding: '1.1rem 0.75rem 0.5rem 0.75rem',
+};
+
+const quickInfoRowStyle: React.CSSProperties = {
+  display: 'flex',
+  alignItems: 'center',
+  gap: '1.2rem',
+  marginTop: '0.6rem',
+  paddingTop: '0.6rem',
+  borderTop: '1px solid rgba(255, 255, 255, 0.06)',
+};
+
+const quickInfoItemStyle: React.CSSProperties = {
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.4rem',
+  fontSize: '0.78rem',
+  color: '#cbd5e1',
 };
 
 const socialIconStyle: React.CSSProperties = {

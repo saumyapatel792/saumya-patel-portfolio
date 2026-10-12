@@ -79,20 +79,25 @@ export const About: React.FC = () => {
               <div style={{ display: 'flex', alignItems: 'center', gap: '1.1rem', marginBottom: '1.5rem' }}>
                 <div
                   style={{
-                    width: '60px',
-                    height: '60px',
+                    width: '68px',
+                    height: '68px',
                     borderRadius: '16px',
-                    background: 'linear-gradient(135deg, #0284c7 0%, #6366f1 100%)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: '#fff',
-                    fontWeight: 800,
-                    fontSize: '1.6rem',
+                    overflow: 'hidden',
+                    border: '2px solid rgba(56, 189, 248, 0.4)',
                     boxShadow: '0 8px 24px rgba(56, 189, 248, 0.3)',
+                    flexShrink: 0,
                   }}
                 >
-                  SP
+                  <img
+                    src="/images/saumya_patel_campus.jpg"
+                    alt={personalInfo.name}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      objectPosition: 'center 15%',
+                    }}
+                  />
                 </div>
                 <div>
                   <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#fff' }}>
