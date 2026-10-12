@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { personalInfo } from '../data/portfolioData';
 import { ArrowRight, Download, Mail, Github, Linkedin, BookOpen, Sparkles, CheckCircle2, ShieldCheck, MapPin, GraduationCap } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 export const Hero: React.FC = () => {
-  const [activePhoto, setActivePhoto] = useState<'formal' | 'campus'>('formal');
-
   const triggerResumeDownload = () => {
     confetti({
       particleCount: 45,
@@ -14,24 +12,11 @@ export const Hero: React.FC = () => {
     });
   };
 
-  const photos = {
-    formal: {
-      src: '/images/saumya_patel_formal.jpg',
-      alt: 'Saumya Alpesh Patel - Professional Portrait',
-      caption: 'Professional Portrait',
-      tag: 'Executive Portfolio',
-      objectPosition: 'center center',
-    },
-    campus: {
-      src: '/images/saumya_patel_campus.jpg',
-      alt: 'Saumya Alpesh Patel - Academic Campus at Alliance University',
-      caption: 'Alliance University Campus',
-      tag: 'Academic & Campus',
-      objectPosition: 'center 20%',
-    },
+  const campusPhoto = {
+    src: '/images/saumya_patel_campus.jpg',
+    alt: 'Saumya Alpesh Patel - Academic Campus at Alliance University',
+    objectPosition: 'center 18%',
   };
-
-  const currentPhoto = photos[activePhoto];
 
   return (
     <section id="home" className="section" style={{ minHeight: '92vh', display: 'flex', alignItems: 'center', paddingTop: '7rem' }}>
@@ -143,20 +128,19 @@ export const Hero: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column: Formal Professional Portrait Card */}
+          {/* Right Column: Campus Professional Portrait Card */}
           <div style={portraitCardWrapperStyle}>
             <div className="glass-card" style={formalPortraitCardStyle}>
               {/* Photo Viewport Container */}
               <div style={photoViewportStyle}>
                 <img
-                  src={currentPhoto.src}
-                  alt={currentPhoto.alt}
+                  src={campusPhoto.src}
+                  alt={campusPhoto.alt}
                   style={{
                     width: '100%',
                     height: '100%',
                     objectFit: 'cover',
-                    objectPosition: currentPhoto.objectPosition,
-                    transition: 'all 0.35s ease',
+                    objectPosition: campusPhoto.objectPosition,
                     display: 'block',
                   }}
                 />
@@ -165,22 +149,12 @@ export const Hero: React.FC = () => {
                 <div style={photoTopShadowOverlayStyle} />
                 <div style={photoBottomShadowOverlayStyle} />
 
-                {/* Photo Switcher Controls */}
-                <div style={photoSwitcherTabBarStyle}>
-                  <button
-                    onClick={() => setActivePhoto('formal')}
-                    style={photoTabButtonStyle(activePhoto === 'formal')}
-                    aria-label="Show Formal Portrait"
-                  >
-                    Formal Portrait
-                  </button>
-                  <button
-                    onClick={() => setActivePhoto('campus')}
-                    style={photoTabButtonStyle(activePhoto === 'campus')}
-                    aria-label="Show Campus Photo"
-                  >
-                    Campus Profile
-                  </button>
+                {/* Campus Institution Tag */}
+                <div style={floatingCampusTagStyle}>
+                  <GraduationCap size={14} color="#38bdf8" />
+                  <span style={{ fontSize: '0.75rem', fontWeight: 600, color: '#f8fafc' }}>
+                    Alliance University
+                  </span>
                 </div>
 
                 {/* Verified Identity Badge Floating on Photo */}
@@ -346,31 +320,20 @@ const photoBottomShadowOverlayStyle: React.CSSProperties = {
   pointerEvents: 'none',
 };
 
-const photoSwitcherTabBarStyle: React.CSSProperties = {
+const floatingCampusTagStyle: React.CSSProperties = {
   position: 'absolute',
   top: '0.9rem',
   left: '0.9rem',
-  display: 'flex',
-  gap: '0.4rem',
-  background: 'rgba(7, 10, 19, 0.75)',
+  background: 'rgba(7, 10, 19, 0.85)',
   backdropFilter: 'blur(8px)',
-  padding: '0.25rem',
-  borderRadius: '8px',
-  border: '1px solid rgba(255, 255, 255, 0.12)',
+  padding: '0.35rem 0.65rem',
+  borderRadius: '999px',
+  border: '1px solid rgba(56, 189, 248, 0.3)',
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.35rem',
   zIndex: 10,
 };
-
-const photoTabButtonStyle = (active: boolean): React.CSSProperties => ({
-  padding: '0.3rem 0.65rem',
-  borderRadius: '6px',
-  fontSize: '0.725rem',
-  fontWeight: 600,
-  background: active ? '#0284c7' : 'transparent',
-  color: active ? '#ffffff' : '#cbd5e1',
-  border: 'none',
-  cursor: 'pointer',
-  transition: 'all 0.2s ease',
-});
 
 const floatingVerifiedBadgeStyle: React.CSSProperties = {
   position: 'absolute',
